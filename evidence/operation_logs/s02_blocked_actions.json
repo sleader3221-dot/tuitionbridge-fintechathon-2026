@@ -2,7 +2,7 @@
   "scenario": "s02_blocked_actions",
   "title": "Deterministic risk blocks: cap, blocked beneficiary, reserve breach",
   "label": "SIMULATED / SANDBOX",
-  "generated_at": "2026-10-20T07:10:58.429753+00:00",
+  "generated_at": "2026-10-20T07:22:13.850433+00:00",
   "steps": [
     {
       "label": "over per-transfer cap",
@@ -21,7 +21,7 @@
       },
       "status_code": 200,
       "response": {
-        "id": "trf_fadfc3ccdfd5",
+        "id": "trf_6d42e9c7d5f9",
         "account_id": "acct_demo_student",
         "status": "BLOCKED",
         "provider_id": "demo_fintech_a",
@@ -58,7 +58,7 @@
         },
         "risk": {
           "passed": false,
-          "checked_at": "2026-10-20T07:10:58.118494+00:00",
+          "checked_at": "2026-10-20T07:22:13.583781+00:00",
           "findings": [
             {
               "code": "PER_TRANSFER_CAP",
@@ -80,10 +80,10 @@
         "memo": "Fall semester tuition",
         "memo_flagged": false,
         "due_date": "2026-11-15",
-        "quote_expires_at": "2026-10-20T07:25:58.118494+00:00",
+        "quote_expires_at": "2026-10-20T07:37:13.583781+00:00",
         "amount_usd_equiv": "16000.00",
-        "created_at": "2026-10-20T07:10:58.118494+00:00",
-        "updated_at": "2026-10-20T07:10:58.118494+00:00",
+        "created_at": "2026-10-20T07:22:13.583781+00:00",
+        "updated_at": "2026-10-20T07:22:13.583781+00:00",
         "executed_at": null,
         "provider_reference": null,
         "failure_reason": null,
@@ -110,7 +110,7 @@
       },
       "status_code": 200,
       "response": {
-        "id": "trf_e459cf01f2f0",
+        "id": "trf_e4d0952a4475",
         "account_id": "acct_demo_student",
         "status": "BLOCKED",
         "provider_id": "demo_fintech_a",
@@ -147,7 +147,7 @@
         },
         "risk": {
           "passed": false,
-          "checked_at": "2026-10-20T07:10:58.220637+00:00",
+          "checked_at": "2026-10-20T07:22:13.675050+00:00",
           "findings": [
             {
               "code": "BENEFICIARY_BLOCKED",
@@ -159,10 +159,10 @@
         "memo": "Fall semester tuition",
         "memo_flagged": false,
         "due_date": "2026-11-15",
-        "quote_expires_at": "2026-10-20T07:25:58.220637+00:00",
+        "quote_expires_at": "2026-10-20T07:37:13.675050+00:00",
         "amount_usd_equiv": "1000.00",
-        "created_at": "2026-10-20T07:10:58.220637+00:00",
-        "updated_at": "2026-10-20T07:10:58.220637+00:00",
+        "created_at": "2026-10-20T07:22:13.675050+00:00",
+        "updated_at": "2026-10-20T07:22:13.675050+00:00",
         "executed_at": null,
         "provider_reference": null,
         "failure_reason": null,
@@ -189,7 +189,7 @@
       },
       "status_code": 200,
       "response": {
-        "id": "trf_52ce00d015a6",
+        "id": "trf_a65991b66048",
         "account_id": "acct_demo_student",
         "status": "BLOCKED",
         "provider_id": "demo_fintech_a",
@@ -226,7 +226,7 @@
         },
         "risk": {
           "passed": false,
-          "checked_at": "2026-10-20T07:10:58.320442+00:00",
+          "checked_at": "2026-10-20T07:22:13.778695+00:00",
           "findings": [
             {
               "code": "INSUFFICIENT_BALANCE",
@@ -238,10 +238,10 @@
         "memo": "Fall semester tuition",
         "memo_flagged": false,
         "due_date": "2026-11-15",
-        "quote_expires_at": "2026-10-20T07:25:58.320442+00:00",
+        "quote_expires_at": "2026-10-20T07:37:13.778695+00:00",
         "amount_usd_equiv": "3900.00",
-        "created_at": "2026-10-20T07:10:58.320442+00:00",
-        "updated_at": "2026-10-20T07:10:58.320442+00:00",
+        "created_at": "2026-10-20T07:22:13.778695+00:00",
+        "updated_at": "2026-10-20T07:22:13.778695+00:00",
         "executed_at": null,
         "provider_reference": null,
         "failure_reason": null,

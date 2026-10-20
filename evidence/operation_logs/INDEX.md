@@ -1,6 +1,6 @@
 # Execution evidence index (SIMULATED sandbox)
 
-Generated 2026-10-20T07:11:01.574248+00:00 by `scripts/make_evidence.py` against a fresh SQLite database.
+Generated 2026-10-20T07:22:16.655192+00:00 by `scripts/make_evidence.py` against a fresh SQLite database.
 All balances, rates, providers and beneficiaries are synthetic; no real money moved.
 
 ## s01_happy_path.json — Compare -> prepare -> approve -> execute (sandbox) -> replay refused

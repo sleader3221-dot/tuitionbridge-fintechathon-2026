@@ -2,7 +2,7 @@
   "scenario": "s07_quote_expiry",
   "title": "Locked quote expires (TTL 1s) and approval is refused",
   "label": "SIMULATED / SANDBOX",
-  "generated_at": "2026-10-20T07:11:01.559489+00:00",
+  "generated_at": "2026-10-20T07:22:16.640076+00:00",
   "steps": [
     {
       "label": "prepare",
@@ -21,7 +21,7 @@
       },
       "status_code": 200,
       "response": {
-        "id": "trf_987a0e6bf153",
+        "id": "trf_531990ed974b",
         "account_id": "acct_demo_student",
         "status": "PENDING_APPROVAL",
         "provider_id": "demo_fintech_a",
@@ -58,16 +58,16 @@
         },
         "risk": {
           "passed": true,
-          "checked_at": "2026-10-20T07:10:59.785041+00:00",
+          "checked_at": "2026-10-20T07:22:14.944894+00:00",
           "findings": []
         },
         "memo": "Fall semester tuition",
         "memo_flagged": false,
         "due_date": "2026-11-15",
-        "quote_expires_at": "2026-10-20T07:11:00.785041+00:00",
+        "quote_expires_at": "2026-10-20T07:22:15.944894+00:00",
         "amount_usd_equiv": "10000.00",
-        "created_at": "2026-10-20T07:10:59.785041+00:00",
-        "updated_at": "2026-10-20T07:10:59.785041+00:00",
+        "created_at": "2026-10-20T07:22:14.944894+00:00",
+        "updated_at": "2026-10-20T07:22:14.944894+00:00",
         "executed_at": null,
         "provider_reference": null,
         "failure_reason": null,
@@ -80,12 +80,12 @@
     {
       "label": "approve after expiry -> EXPIRED",
       "method": "POST",
-      "path": "/api/transfers/trf_987a0e6bf153/approve",
+      "path": "/api/transfers/trf_531990ed974b/approve",
       "role": "student",
       "request_body": {},
       "status_code": 200,
       "response": {
-        "id": "trf_987a0e6bf153",
+        "id": "trf_531990ed974b",
         "account_id": "acct_demo_student",
         "status": "EXPIRED",
         "provider_id": "demo_fintech_a",
@@ -122,22 +122,22 @@
         },
         "risk": {
           "passed": false,
-          "checked_at": "2026-10-20T07:11:01.414792+00:00",
+          "checked_at": "2026-10-20T07:22:16.533292+00:00",
           "findings": [
             {
               "code": "QUOTE_EXPIRED",
               "severity": "BLOCK",
-              "message": "Quote expired at 2026-10-20T07:11:00.785041+00:00."
+              "message": "Quote expired at 2026-10-20T07:22:15.944894+00:00."
             }
           ]
         },
         "memo": "Fall semester tuition",
         "memo_flagged": false,
         "due_date": "2026-11-15",
-        "quote_expires_at": "2026-10-20T07:11:00.785041+00:00",
+        "quote_expires_at": "2026-10-20T07:22:15.944894+00:00",
         "amount_usd_equiv": "10000.00",
-        "created_at": "2026-10-20T07:10:59.785041+00:00",
-        "updated_at": "2026-10-20T07:11:01.414792+00:00",
+        "created_at": "2026-10-20T07:22:14.944894+00:00",
+        "updated_at": "2026-10-20T07:22:16.533292+00:00",
         "executed_at": null,
         "provider_reference": null,
         "failure_reason": null,

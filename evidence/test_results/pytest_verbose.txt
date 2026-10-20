@@ -74,4 +74,4 @@ tests/unit/test_risk.py::test_settlement_warning_does_not_block PASSED   [100%]
     _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-======================== 60 passed, 1 warning in 4.00s =========================
+======================== 60 passed, 1 warning in 3.71s =========================

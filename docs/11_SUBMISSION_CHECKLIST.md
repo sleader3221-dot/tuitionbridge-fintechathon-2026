@@ -1,18 +1,30 @@
-# Submission checklist (official items from Appendix 2)
+# Submission Checklist
 
-Deadline: 20 Oct 2026 23:59 Beijing (UTC+8) = 21:29 IST. Channel (per secondary listings; confirm on fintechathon.g-ican.com): email to wangyr@pbcsf.tsinghua.edu.cn with registration form and passport bio pages, plus deliverables.
+## Current package status
 
-| # | Official item | File(s) | Status |
+**Team:** TuitionBridge FinTech Lab
+**Track and topic:** International track, Topic C (Cross-border & Student Finance Assistant)
+**Public source repository:** https://github.com/sleader3221-dot/tuitionbridge-fintechathon-2026
+
+| # | Deliverable | Location | Status |
 |---|---|---|---|
-| 01 | Technical documentation: architecture, core algorithm, security design | `docs/05_TECHNICAL_DOCUMENTATION.md`, `docs/04_SYSTEM_ARCHITECTURE.md` (+ PDF export, see below) | VERIFIED COMPLETE (Markdown); PDF export: run `pandoc` or print-to-PDF |
-| 02 | Presentation deck, ≤ 10 min | `slides/PRESENTATION_DECK.pptx` via `python scripts/build_slides.py`; `slides/SPEAKER_NOTES.md` | COMPLETE WITH LIMITATIONS — generate and inspect locally; add screenshots |
-| 03 | Demo video (optional, ≤ 5 min) | storyboard in `docs/10_DEMO_RUNBOOK.md` | OUTSTANDING (optional) |
-| 04 | Source code with README, GitHub link, deployment instructions, test cases | repo root, `README.md`, `tests/` | VERIFIED COMPLETE locally; GitHub URL REQUIRES TEAM ACTION |
-| 05 | Security self-assessment: permission tiers, known risks | `docs/06_SECURITY_SELF_ASSESSMENT.md`, `docs/09_KNOWN_RISKS.md` | VERIFIED COMPLETE |
-| 06 | Execution evidence: sandbox logs (+ demo video) | `evidence/operation_logs/`, `evidence/test_results/`, `evidence/screenshots/` | COMPLETE WITH LIMITATIONS — logs/tests real; video outstanding |
-| — | Eligibility: 2–5 students, overseas institutions, ≥60% non-Chinese nationals, English | registration form | REQUIRES TEAM INFORMATION |
-| — | Team name, GitHub URL, licence holder | `LICENSE`, docs headers, email draft | REQUIRES TEAM INFORMATION |
+| 01 | Technical documentation | `docs/05_TECHNICAL_DOCUMENTATION.md`, `docs/04_SYSTEM_ARCHITECTURE.md` | Complete in Markdown; export to PDF only if the organizer requires it. |
+| 02 | Presentation, up to 10 minutes | `slides/PRESENTATION_DECK.pptx`, `slides/SPEAKER_NOTES.md` | 14-slide deck generated. Four demo screenshots are embedded; visually inspect it in PowerPoint before submission. |
+| 03 | Demo video, optional, up to 5 minutes | Storyboard in `docs/10_DEMO_RUNBOOK.md` | Not recorded. Optional according to the provided checklist; confirm current rules. |
+| 04 | Source, README, tests, repository URL | Repository root, `README.md`, `tests/` | Public repository exists. 60 tests passed in the recorded run; see `evidence/test_results/`. |
+| 05 | Security self-assessment | `docs/06_SECURITY_SELF_ASSESSMENT.md`, `docs/09_KNOWN_RISKS.md` | Complete. |
+| 06 | Execution evidence | `evidence/operation_logs/`, `evidence/test_results/`, `evidence/screenshots/` | Scenario logs, test output, and screenshots are present. Screenshots and deck still need human visual review. |
+| — | Team roster and eligibility | Private working template outside this repository | Two-member roster is expected by the user; second member details and organizer eligibility criteria still need confirmation. |
+| — | Registration and delivery channel | Official competition website and registration form | Current recipient address and international-track cutoff were not verified from accessible official page text. Confirm with the organizer before sending identity documents. |
 
-PDF export commands (optional): `pandoc docs/05_TECHNICAL_DOCUMENTATION.md docs/04_SYSTEM_ARCHITECTURE.md -o docs/TECHNICAL_DOCUMENTATION.pdf` (Mermaid blocks render as code unless a Mermaid filter is installed; alternatively open the Markdown in VS Code with a Mermaid preview and print to PDF). Slides to PDF: `soffice --headless --convert-to pdf slides/PRESENTATION_DECK.pptx --outdir slides`.
+## Deadline and delivery checks
 
-Final packaging: `cd .. && python3 -m zipfile -c TuitionBridge_FinTechathon2026_Submission.zip tuitionbridge` after removing `.venv`, `*.db`, `__pycache__` (`.gitignore` lists them; `git archive` is cleaner once committed).
+A previous working note listed **20 October 2026, 23:59 China Standard Time (20 October 2026, 21:29 India Standard Time)**. China Standard Time is 2 hours 30 minutes ahead of India Standard Time. The current official website displays 2026 competition information, but the accessible page text does not establish the international-track submission deadline or delivery email. Check the current international-track notice or registration confirmation before relying on any date or recipient.
+
+Official site: <https://fintechathon.g-ican.com/>
+
+Do not send passport pages to an address copied from a secondary listing. Verify the recipient through the current official registration flow or directly with the organizer.
+
+## Package contents
+
+The repository contains the source, test results, scenario logs, screenshots, and generated PowerPoint deck. Build a clean archive from the committed revision with `git archive`; this omits ignored local files such as virtual environments and databases. If evidence or slide files are not tracked in the revision being archived, add them only after reviewing the archive contents.
