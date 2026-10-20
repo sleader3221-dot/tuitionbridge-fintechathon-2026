@@ -1,0 +1,19 @@
+{
+  "label": "SYNTHETIC - no real persons, institutions, accounts or screening lists",
+  "accounts": [
+    {"id": "acct_demo_student", "holder_name": "Demo Student (synthetic)", "home_currency": "INR", "reserve_min": "150000.00", "institution": "Demo University (synthetic)"},
+    {"id": "acct_other", "holder_name": "Other Demo Student (synthetic)", "home_currency": "INR", "reserve_min": "50000.00", "institution": "Another Demo College (synthetic)"}
+  ],
+  "balances": [
+    {"account_id": "acct_demo_student", "currency": "INR", "amount": "1250000.00"},
+    {"account_id": "acct_demo_student", "currency": "USD", "amount": "300.00"},
+    {"account_id": "acct_other", "currency": "INR", "amount": "200000.00"}
+  ],
+  "beneficiaries": [
+    {"id": "benef_univ_bursar", "account_id": "acct_demo_student", "name": "Demo University Bursar (synthetic)", "currency": "USD", "account_number_masked": "****4821", "country": "US", "kind": "INSTITUTION", "blocked": 0, "blocked_reason": null, "simulate_failure": null},
+    {"id": "benef_landlord", "account_id": "acct_demo_student", "name": "Demo Landlord (synthetic)", "currency": "USD", "account_number_masked": "****7733", "country": "US", "kind": "INDIVIDUAL", "blocked": 0, "blocked_reason": null, "simulate_failure": null},
+    {"id": "benef_blocked_entity", "account_id": "acct_demo_student", "name": "Blocked Entity (synthetic screening hit)", "currency": "USD", "account_number_masked": "****0000", "country": "XX", "kind": "INDIVIDUAL", "blocked": 1, "blocked_reason": "Synthetic screening-list match (demo only)", "simulate_failure": null},
+    {"id": "benef_timeout_demo", "account_id": "acct_demo_student", "name": "Timeout Demo Beneficiary (synthetic)", "currency": "USD", "account_number_masked": "****9999", "country": "US", "kind": "INDIVIDUAL", "blocked": 0, "blocked_reason": null, "simulate_failure": "TIMEOUT_ONCE"},
+    {"id": "benef_other_college", "account_id": "acct_other", "name": "Another Demo College (synthetic)", "currency": "USD", "account_number_masked": "****1111", "country": "US", "kind": "INSTITUTION", "blocked": 0, "blocked_reason": null, "simulate_failure": null}
+  ]
+}

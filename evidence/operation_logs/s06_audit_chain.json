@@ -1,0 +1,405 @@
+{
+  "scenario": "s06_audit_chain",
+  "title": "Hash-chained audit log and verification",
+  "label": "SIMULATED / SANDBOX",
+  "generated_at": "2026-10-20T07:10:59.453813+00:00",
+  "steps": [
+    {
+      "label": "audit entries",
+      "method": "GET",
+      "path": "/api/audit",
+      "role": "viewer",
+      "request_body": null,
+      "status_code": 200,
+      "response": [
+        {
+          "seq": 1,
+          "ts": "2026-10-20T07:10:57.539958+00:00",
+          "actor": "analyst:ba041bbd",
+          "action": "QUOTE_COMPARE",
+          "tier": 1,
+          "account_id": "acct_demo_student",
+          "entity_type": "plan",
+          "entity_id": null,
+          "prev_hash": "0000000000000000000000000000000000000000000000000000000000000000",
+          "hash": "b68ef69c64ef5a39a8707104f48723b011049c36dff89d0c6b1b1921dcbb6c48",
+          "payload": {
+            "explanation_source": "DETERMINISTIC_FALLBACK",
+            "question_flagged": false,
+            "receive_currency": "USD",
+            "recommended_provider_id": "demo_fintech_a",
+            "target_receive_amount": "10000.00"
+          }
+        },
+        {
+          "seq": 2,
+          "ts": "2026-10-20T07:10:57.680066+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_PREPARED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_d071d41adc25",
+          "prev_hash": "b68ef69c64ef5a39a8707104f48723b011049c36dff89d0c6b1b1921dcbb6c48",
+          "hash": "537f8b2f4914901cbfe749578b83c9036f2f25db0f317863b243ed06e5ee720a",
+          "payload": {
+            "beneficiary_id": "benef_univ_bursar",
+            "findings": [],
+            "memo_flagged": false,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "898427.91",
+            "send_currency": "INR",
+            "status": "PENDING_APPROVAL",
+            "target_receive_amount": "10000.00"
+          }
+        },
+        {
+          "seq": 3,
+          "ts": "2026-10-20T07:10:57.803083+00:00",
+          "actor": "student:b0082c07",
+          "action": "TRANSFER_APPROVED",
+          "tier": 3,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_d071d41adc25",
+          "prev_hash": "537f8b2f4914901cbfe749578b83c9036f2f25db0f317863b243ed06e5ee720a",
+          "hash": "8eaae46f07f103050968d16a12473ef82fc2ca80736d6dcdeb900ffb943a18c2",
+          "payload": {
+            "findings": [],
+            "note": "evidence run",
+            "status": "APPROVED"
+          }
+        },
+        {
+          "seq": 4,
+          "ts": "2026-10-20T07:10:57.999372+00:00",
+          "actor": "student:b0082c07",
+          "action": "TRANSFER_EXECUTED_SIMULATED",
+          "tier": 3,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_d071d41adc25",
+          "prev_hash": "8eaae46f07f103050968d16a12473ef82fc2ca80736d6dcdeb900ffb943a18c2",
+          "hash": "4125d4668f02c08a41efe47842b8530f1952d36a04166ce08b9638affd158ecc",
+          "payload": {
+            "label": "SIMULATED",
+            "provider_reference": "SBX-2226E6094078",
+            "receive_amount": "10000.00",
+            "receive_currency": "USD",
+            "send_amount": "898427.91",
+            "send_currency": "INR"
+          }
+        },
+        {
+          "seq": 5,
+          "ts": "2026-10-20T07:10:58.164602+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_BLOCKED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_fadfc3ccdfd5",
+          "prev_hash": "4125d4668f02c08a41efe47842b8530f1952d36a04166ce08b9638affd158ecc",
+          "hash": "3eea0b1230862595d3cfdb7b440cbea00687484f52e81a1baa5d09f34f7d1703",
+          "payload": {
+            "beneficiary_id": "benef_univ_bursar",
+            "findings": [
+              "PER_TRANSFER_CAP",
+              "DAILY_CAP",
+              "INSUFFICIENT_BALANCE"
+            ],
+            "memo_flagged": false,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "1437484.65",
+            "send_currency": "INR",
+            "status": "BLOCKED",
+            "target_receive_amount": "16000.00"
+          }
+        },
+        {
+          "seq": 6,
+          "ts": "2026-10-20T07:10:58.270485+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_BLOCKED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_e459cf01f2f0",
+          "prev_hash": "3eea0b1230862595d3cfdb7b440cbea00687484f52e81a1baa5d09f34f7d1703",
+          "hash": "f041dfaca71ee88441eb09e67684b661377964fda48adc3e328f0d5e92bf80ad",
+          "payload": {
+            "beneficiary_id": "benef_blocked_entity",
+            "findings": [
+              "BENEFICIARY_BLOCKED"
+            ],
+            "memo_flagged": false,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "89842.80",
+            "send_currency": "INR",
+            "status": "BLOCKED",
+            "target_receive_amount": "1000.00"
+          }
+        },
+        {
+          "seq": 7,
+          "ts": "2026-10-20T07:10:58.381431+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_BLOCKED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_52ce00d015a6",
+          "prev_hash": "f041dfaca71ee88441eb09e67684b661377964fda48adc3e328f0d5e92bf80ad",
+          "hash": "b385bd3a92fe50a93b3b3b44342e688696967eea3f516d9502246cc58fdbd4b3",
+          "payload": {
+            "beneficiary_id": "benef_univ_bursar",
+            "findings": [
+              "INSUFFICIENT_BALANCE"
+            ],
+            "memo_flagged": false,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "350386.89",
+            "send_currency": "INR",
+            "status": "BLOCKED",
+            "target_receive_amount": "3900.00"
+          }
+        },
+        {
+          "seq": 8,
+          "ts": "2026-10-20T07:10:58.449519+00:00",
+          "actor": "viewer:428d2ac3",
+          "action": "PERMISSION_DENIED",
+          "tier": 1,
+          "account_id": "acct_demo_student",
+          "entity_type": "request",
+          "entity_id": "/api/quotes/compare",
+          "prev_hash": "b385bd3a92fe50a93b3b3b44342e688696967eea3f516d9502246cc58fdbd4b3",
+          "hash": "a2a45b33f620628e74cd30740e57008037ca81357081b26014e9dec155f6cce1",
+          "payload": {
+            "method": "POST",
+            "reason": "Role 'viewer' is limited to Tier 0 (READ); this action requires Tier 1 (ANALYZE)"
+          }
+        },
+        {
+          "seq": 9,
+          "ts": "2026-10-20T07:10:58.502898+00:00",
+          "actor": "analyst:ba041bbd",
+          "action": "PERMISSION_DENIED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "request",
+          "entity_id": "/api/transfers/prepare",
+          "prev_hash": "a2a45b33f620628e74cd30740e57008037ca81357081b26014e9dec155f6cce1",
+          "hash": "a239a0288ce461948ce164aee660fccd9749b1907c30bc79beed995063af73f2",
+          "payload": {
+            "method": "POST",
+            "reason": "Role 'analyst' is limited to Tier 1 (ANALYZE); this action requires Tier 2 (PREPARE)"
+          }
+        },
+        {
+          "seq": 10,
+          "ts": "2026-10-20T07:10:58.580078+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_PREPARED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_214ac2eb5b94",
+          "prev_hash": "a239a0288ce461948ce164aee660fccd9749b1907c30bc79beed995063af73f2",
+          "hash": "de76017c785543432db4f649bcdf1d96763463333cf2725385b876cb5bd81d49",
+          "payload": {
+            "beneficiary_id": "benef_univ_bursar",
+            "findings": [],
+            "memo_flagged": false,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "44921.40",
+            "send_currency": "INR",
+            "status": "PENDING_APPROVAL",
+            "target_receive_amount": "500.00"
+          }
+        },
+        {
+          "seq": 11,
+          "ts": "2026-10-20T07:10:58.626234+00:00",
+          "actor": "planner:4581cc82",
+          "action": "PERMISSION_DENIED",
+          "tier": 3,
+          "account_id": "acct_demo_student",
+          "entity_type": "request",
+          "entity_id": "/api/transfers/trf_214ac2eb5b94/approve",
+          "prev_hash": "de76017c785543432db4f649bcdf1d96763463333cf2725385b876cb5bd81d49",
+          "hash": "8b23226c7b14780cda6e070aabe1532c45b7ffa38d37877878c5a5521ad2561d",
+          "payload": {
+            "method": "POST",
+            "reason": "Role 'planner' is limited to Tier 2 (PREPARE); this action requires Tier 3 (EXECUTE_SANDBOX)"
+          }
+        },
+        {
+          "seq": 12,
+          "ts": "2026-10-20T07:10:58.697097+00:00",
+          "actor": "student:396e4eb2",
+          "action": "PERMISSION_DENIED",
+          "tier": 0,
+          "account_id": "acct_demo_student",
+          "entity_type": "request",
+          "entity_id": "/api/transfers/trf_214ac2eb5b94/approve",
+          "prev_hash": "8b23226c7b14780cda6e070aabe1532c45b7ffa38d37877878c5a5521ad2561d",
+          "hash": "55e02a746668c8fcc6dcb639a0838a7b2c162c8ae1c2b7da0e82592276a510e7",
+          "payload": {
+            "method": "POST",
+            "reason": "Principal is not authorised for this account"
+          }
+        },
+        {
+          "seq": 13,
+          "ts": "2026-10-20T07:10:58.737824+00:00",
+          "actor": "student:b0082c07",
+          "action": "PERMISSION_DENIED",
+          "tier": 4,
+          "account_id": "acct_demo_student",
+          "entity_type": "request",
+          "entity_id": "/api/transfers/trf_214ac2eb5b94/production-execute",
+          "prev_hash": "55e02a746668c8fcc6dcb639a0838a7b2c162c8ae1c2b7da0e82592276a510e7",
+          "hash": "c7529016b3029f43f93b86de2a3ddc14ad952777be779f27f2cbe04e06554057",
+          "payload": {
+            "method": "POST",
+            "reason": "Tier 4 (production / irreversible operations) is disabled in this build"
+          }
+        },
+        {
+          "seq": 14,
+          "ts": "2026-10-20T07:10:58.852807+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_PREPARED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_071894d9f11d",
+          "prev_hash": "c7529016b3029f43f93b86de2a3ddc14ad952777be779f27f2cbe04e06554057",
+          "hash": "51eef2b9f5f1f344e6211fa6c063793cd01970d13fcc5f61fdede9f369c744b0",
+          "payload": {
+            "beneficiary_id": "benef_timeout_demo",
+            "findings": [],
+            "memo_flagged": false,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "71874.24",
+            "send_currency": "INR",
+            "status": "PENDING_APPROVAL",
+            "target_receive_amount": "800.00"
+          }
+        },
+        {
+          "seq": 15,
+          "ts": "2026-10-20T07:10:58.925820+00:00",
+          "actor": "student:b0082c07",
+          "action": "TRANSFER_APPROVED",
+          "tier": 3,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_071894d9f11d",
+          "prev_hash": "51eef2b9f5f1f344e6211fa6c063793cd01970d13fcc5f61fdede9f369c744b0",
+          "hash": "c1b047e007e50182a6d6cae389e1d0f4fddd1eb463e77d0cb9c7919df5a6ad78",
+          "payload": {
+            "findings": [],
+            "note": "",
+            "status": "APPROVED"
+          }
+        },
+        {
+          "seq": 16,
+          "ts": "2026-10-20T07:10:59.008832+00:00",
+          "actor": "student:b0082c07",
+          "action": "TRANSFER_EXECUTION_FAILED",
+          "tier": 3,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_071894d9f11d",
+          "prev_hash": "c1b047e007e50182a6d6cae389e1d0f4fddd1eb463e77d0cb9c7919df5a6ad78",
+          "hash": "be194eff2ca0eb1560b4ca52d09868d8078c9527e60c9f3e07c236d554fecf46",
+          "payload": {
+            "balance_debited": false,
+            "reason": "SIMULATED provider timeout: no settlement confirmation received",
+            "retryable": true
+          }
+        },
+        {
+          "seq": 17,
+          "ts": "2026-10-20T07:10:59.138999+00:00",
+          "actor": "student:b0082c07",
+          "action": "TRANSFER_EXECUTED_SIMULATED",
+          "tier": 3,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_071894d9f11d",
+          "prev_hash": "be194eff2ca0eb1560b4ca52d09868d8078c9527e60c9f3e07c236d554fecf46",
+          "hash": "a2252bb794c70c50a5ef1e61d02934ae1d410ddce5b55e09ae7fe368531f133b",
+          "payload": {
+            "label": "SIMULATED",
+            "provider_reference": "SBX-FB6A313F0A7E",
+            "receive_amount": "800.00",
+            "receive_currency": "USD",
+            "send_amount": "71874.24",
+            "send_currency": "INR"
+          }
+        },
+        {
+          "seq": 18,
+          "ts": "2026-10-20T07:10:59.269102+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_PREPARED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_7c66023a54e0",
+          "prev_hash": "a2252bb794c70c50a5ef1e61d02934ae1d410ddce5b55e09ae7fe368531f133b",
+          "hash": "1169a4dce63653bb178bf10103ebe748923545acba25c112d2e04975f80498ac",
+          "payload": {
+            "beneficiary_id": "benef_univ_bursar",
+            "findings": [],
+            "memo_flagged": true,
+            "provider_id": "demo_fintech_a",
+            "receive_currency": "USD",
+            "send_amount": "26952.85",
+            "send_currency": "INR",
+            "status": "PENDING_APPROVAL",
+            "target_receive_amount": "300.00"
+          }
+        },
+        {
+          "seq": 19,
+          "ts": "2026-10-20T07:10:59.369509+00:00",
+          "actor": "planner:4581cc82",
+          "action": "TRANSFER_REJECTED",
+          "tier": 2,
+          "account_id": "acct_demo_student",
+          "entity_type": "transfer",
+          "entity_id": "trf_7c66023a54e0",
+          "prev_hash": "1169a4dce63653bb178bf10103ebe748923545acba25c112d2e04975f80498ac",
+          "hash": "49ffa2890c91fd0548818914a8bc88af116bcd406d233baee85ef7eb0397f1a3",
+          "payload": {
+            "note": "wrong invoice"
+          }
+        }
+      ]
+    },
+    {
+      "label": "verify chain",
+      "method": "GET",
+      "path": "/api/audit/verify",
+      "role": "viewer",
+      "request_body": null,
+      "status_code": 200,
+      "response": {
+        "valid": true,
+        "entries_checked": 19,
+        "head_hash": "49ffa2890c91fd0548818914a8bc88af116bcd406d233baee85ef7eb0397f1a3"
+      }
+    }
+  ]
+}

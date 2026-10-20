@@ -1,0 +1,220 @@
+{
+  "scenario": "s03_permission_tiers",
+  "title": "Backend permission enforcement incl. Tier 4 refusal and cross-account",
+  "label": "SIMULATED / SANDBOX",
+  "generated_at": "2026-10-20T07:10:58.779026+00:00",
+  "steps": [
+    {
+      "label": "no key",
+      "method": "GET",
+      "path": "/api/accounts/acct_demo_student",
+      "role": "(none)",
+      "request_body": null,
+      "status_code": 401,
+      "response": {
+        "detail": {
+          "code": "UNAUTHENTICATED",
+          "message": "Missing or invalid X-API-Key"
+        }
+      }
+    },
+    {
+      "label": "viewer tries compare",
+      "method": "POST",
+      "path": "/api/quotes/compare",
+      "role": "viewer",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "target_receive_amount": "100.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15"
+      },
+      "status_code": 403,
+      "response": {
+        "error": {
+          "code": "PERMISSION_DENIED",
+          "message": "Role 'viewer' is limited to Tier 0 (READ); this action requires Tier 1 (ANALYZE)",
+          "required_tier": 1,
+          "required_tier_name": "ANALYZE",
+          "principal_max_tier": 0
+        }
+      }
+    },
+    {
+      "label": "analyst tries prepare",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "analyst",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_univ_bursar",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "10000.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0005"
+      },
+      "status_code": 403,
+      "response": {
+        "error": {
+          "code": "PERMISSION_DENIED",
+          "message": "Role 'analyst' is limited to Tier 1 (ANALYZE); this action requires Tier 2 (PREPARE)",
+          "required_tier": 2,
+          "required_tier_name": "PREPARE",
+          "principal_max_tier": 1
+        }
+      }
+    },
+    {
+      "label": "planner prepares",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "planner",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_univ_bursar",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "500.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0006"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_214ac2eb5b94",
+        "account_id": "acct_demo_student",
+        "status": "PENDING_APPROVAL",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "44921.40",
+          "fixed_fee": "0",
+          "percent_fee_amount": "404.29",
+          "total_fees": "404.29",
+          "amount_converted": "44517.11",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "500.00",
+          "cost_vs_mid": "671.40",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": true,
+          "checked_at": "2026-10-20T07:10:58.545103+00:00",
+          "findings": []
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:58.545103+00:00",
+        "amount_usd_equiv": "500.00",
+        "created_at": "2026-10-20T07:10:58.545103+00:00",
+        "updated_at": "2026-10-20T07:10:58.545103+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "planner tries approve",
+      "method": "POST",
+      "path": "/api/transfers/trf_214ac2eb5b94/approve",
+      "role": "planner",
+      "request_body": {},
+      "status_code": 403,
+      "response": {
+        "error": {
+          "code": "PERMISSION_DENIED",
+          "message": "Role 'planner' is limited to Tier 2 (PREPARE); this action requires Tier 3 (EXECUTE_SANDBOX)",
+          "required_tier": 3,
+          "required_tier_name": "EXECUTE_SANDBOX",
+          "principal_max_tier": 2
+        }
+      }
+    },
+    {
+      "label": "other account tries approve",
+      "method": "POST",
+      "path": "/api/transfers/trf_214ac2eb5b94/approve",
+      "role": "other",
+      "request_body": {},
+      "status_code": 403,
+      "response": {
+        "error": {
+          "code": "PERMISSION_DENIED",
+          "message": "Principal is not authorised for this account",
+          "required_tier": 0,
+          "required_tier_name": "READ",
+          "principal_max_tier": 3
+        }
+      }
+    },
+    {
+      "label": "student tries production execute (Tier 4)",
+      "method": "POST",
+      "path": "/api/transfers/trf_214ac2eb5b94/production-execute",
+      "role": "student",
+      "request_body": null,
+      "status_code": 403,
+      "response": {
+        "error": {
+          "code": "PERMISSION_DENIED",
+          "message": "Tier 4 (production / irreversible operations) is disabled in this build",
+          "required_tier": 4,
+          "required_tier_name": "PRODUCTION",
+          "principal_max_tier": 3
+        }
+      }
+    },
+    {
+      "label": "float amount rejected",
+      "method": "POST",
+      "path": "/api/quotes/compare",
+      "role": "analyst",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "target_receive_amount": 100.5,
+        "receive_currency": "USD",
+        "due_date": "2026-11-15"
+      },
+      "status_code": 422,
+      "response": {
+        "detail": [
+          {
+            "type": "string_type",
+            "loc": [
+              "body",
+              "target_receive_amount"
+            ],
+            "msg": "Input should be a valid string",
+            "input": 100.5
+          }
+        ]
+      }
+    }
+  ]
+}

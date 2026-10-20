@@ -1,0 +1,77 @@
+============================= test session starts ==============================
+platform linux -- Python 3.10.12, pytest-8.3.5, pluggy-1.7.0 -- /mnt/c/Users/Tanvi Technology/.copilot/chats/7d1502ea-2f1c-4f2f-8509-46ef252dd1f0/tuitionbridge/.venv/bin/python
+cachedir: .pytest_cache
+rootdir: /mnt/c/Users/Tanvi Technology/.copilot/chats/7d1502ea-2f1c-4f2f-8509-46ef252dd1f0/tuitionbridge
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.15.1
+collecting ... collected 60 items
+
+tests/integration/test_api_flow.py::test_happy_path_end_to_end PASSED    [  1%]
+tests/integration/test_api_flow.py::test_idempotent_prepare PASSED       [  3%]
+tests/integration/test_api_flow.py::test_not_affordable_blocked PASSED   [  5%]
+tests/integration/test_api_flow.py::test_per_transfer_cap_blocked PASSED [  6%]
+tests/integration/test_api_flow.py::test_blocked_beneficiary PASSED      [  8%]
+tests/integration/test_api_flow.py::test_daily_cap_enforced_across_transfers PASSED [ 10%]
+tests/integration/test_api_flow.py::test_quote_expiry PASSED             [ 11%]
+tests/integration/test_api_flow.py::test_reject_flow PASSED              [ 13%]
+tests/integration/test_api_flow.py::test_failure_then_recovery PASSED    [ 15%]
+tests/integration/test_api_flow.py::test_memo_injection_is_flagged_but_does_not_alter_amounts PASSED [ 16%]
+tests/integration/test_api_flow.py::test_unknown_provider_404_and_bad_currency_422 PASSED [ 18%]
+tests/security/test_permissions.py::test_no_or_bad_key PASSED            [ 20%]
+tests/security/test_permissions.py::test_tier_boundaries PASSED          [ 21%]
+tests/security/test_permissions.py::test_tier4_disabled_even_for_top_role PASSED [ 23%]
+tests/security/test_permissions.py::test_cross_account_access_denied PASSED [ 25%]
+tests/security/test_permissions.py::test_denials_are_audited PASSED      [ 26%]
+tests/security/test_permissions.py::test_float_amount_rejected PASSED    [ 28%]
+tests/security/test_permissions.py::test_rate_limit PASSED               [ 30%]
+tests/unit/test_audit.py::test_chain_verifies_and_detects_tampering PASSED [ 31%]
+tests/unit/test_explainer.py::test_fallback_without_key PASSED           [ 33%]
+tests/unit/test_explainer.py::test_invented_number_rejected PASSED       [ 35%]
+tests/unit/test_explainer.py::test_grounded_output_accepted PASSED       [ 36%]
+tests/unit/test_explainer.py::test_flagged_question_never_reaches_llm PASSED [ 38%]
+tests/unit/test_explainer.py::test_llm_error_falls_back PASSED           [ 40%]
+tests/unit/test_fx.py::test_direct_and_inverse PASSED                    [ 41%]
+tests/unit/test_fx.py::test_unsupported_pair PASSED                      [ 43%]
+tests/unit/test_fx.py::test_usd_equivalent_cross PASSED                  [ 45%]
+tests/unit/test_guard.py::test_injection_flagged PASSED                  [ 46%]
+tests/unit/test_guard.py::test_benign_memo_not_flagged PASSED            [ 48%]
+tests/unit/test_guard.py::test_control_chars_and_truncation PASSED       [ 50%]
+tests/unit/test_money.py::test_floats_rejected PASSED                    [ 51%]
+tests/unit/test_money.py::test_parse_and_round PASSED                    [ 53%]
+tests/unit/test_money.py::test_invalid_inputs PASSED                     [ 55%]
+tests/unit/test_providers.py::test_bank_wire_hand_checked PASSED         [ 56%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[1.00-demo_bank_wire] PASSED [ 58%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[1.00-demo_fintech_a] PASSED [ 60%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[1.00-demo_fintech_b] PASSED [ 61%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[1.00-demo_edu_platform] PASSED [ 63%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[999.99-demo_bank_wire] PASSED [ 65%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[999.99-demo_fintech_a] PASSED [ 66%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[999.99-demo_fintech_b] PASSED [ 68%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[999.99-demo_edu_platform] PASSED [ 70%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[10000.00-demo_bank_wire] PASSED [ 71%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[10000.00-demo_fintech_a] PASSED [ 73%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[10000.00-demo_fintech_b] PASSED [ 75%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[10000.00-demo_edu_platform] PASSED [ 76%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[19999.99-demo_bank_wire] PASSED [ 78%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[19999.99-demo_fintech_a] PASSED [ 80%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[19999.99-demo_fintech_b] PASSED [ 81%]
+tests/unit/test_providers.py::test_target_mode_meets_target_tightly[19999.99-demo_edu_platform] PASSED [ 83%]
+tests/unit/test_providers.py::test_send_mode_consistency PASSED          [ 85%]
+tests/unit/test_providers.py::test_fees_exceed_amount PASSED             [ 86%]
+tests/unit/test_providers.py::test_unsupported_corridor PASSED           [ 88%]
+tests/unit/test_risk.py::test_passes_clean PASSED                        [ 90%]
+tests/unit/test_risk.py::test_per_transfer_cap PASSED                    [ 91%]
+tests/unit/test_risk.py::test_daily_cap_boundary PASSED                  [ 93%]
+tests/unit/test_risk.py::test_blocked_beneficiary_and_mismatch PASSED    [ 95%]
+tests/unit/test_risk.py::test_insufficient_balance_boundary PASSED       [ 96%]
+tests/unit/test_risk.py::test_expired_quote_and_duplicate PASSED         [ 98%]
+tests/unit/test_risk.py::test_settlement_warning_does_not_block PASSED   [100%]
+
+=============================== warnings summary ===============================
+.venv/lib/python3.10/site-packages/starlette/testclient.py:37
+  /mnt/c/Users/Tanvi Technology/.copilot/chats/7d1502ea-2f1c-4f2f-8509-46ef252dd1f0/tuitionbridge/.venv/lib/python3.10/site-packages/starlette/testclient.py:37: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 60 passed, 1 warning in 4.00s =========================

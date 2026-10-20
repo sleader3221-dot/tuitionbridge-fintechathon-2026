@@ -1,0 +1,255 @@
+{
+  "scenario": "s02_blocked_actions",
+  "title": "Deterministic risk blocks: cap, blocked beneficiary, reserve breach",
+  "label": "SIMULATED / SANDBOX",
+  "generated_at": "2026-10-20T07:10:58.429753+00:00",
+  "steps": [
+    {
+      "label": "over per-transfer cap",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "planner",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_univ_bursar",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "16000.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0002"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_fadfc3ccdfd5",
+        "account_id": "acct_demo_student",
+        "status": "BLOCKED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "1437484.65",
+          "fixed_fee": "0",
+          "percent_fee_amount": "12937.36",
+          "total_fees": "12937.36",
+          "amount_converted": "1424547.29",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "16000.00",
+          "cost_vs_mid": "21484.65",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": false,
+          "checked_at": "2026-10-20T07:10:58.118494+00:00",
+          "findings": [
+            {
+              "code": "PER_TRANSFER_CAP",
+              "severity": "BLOCK",
+              "message": "USD equivalent 16000.00 exceeds the per-transfer cap 15000."
+            },
+            {
+              "code": "DAILY_CAP",
+              "severity": "BLOCK",
+              "message": "Executed today 10000.00 + 16000.00 USD exceeds the daily cap 20000."
+            },
+            {
+              "code": "INSUFFICIENT_BALANCE",
+              "severity": "BLOCK",
+              "message": "Balance 351572.09 INR minus 1437484.65 would fall below the reserve 150000.00."
+            }
+          ]
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:58.118494+00:00",
+        "amount_usd_equiv": "16000.00",
+        "created_at": "2026-10-20T07:10:58.118494+00:00",
+        "updated_at": "2026-10-20T07:10:58.118494+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "blocked beneficiary",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "planner",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_blocked_entity",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "1000.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0003"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_e459cf01f2f0",
+        "account_id": "acct_demo_student",
+        "status": "BLOCKED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_blocked_entity",
+        "beneficiary": {
+          "id": "benef_blocked_entity",
+          "name": "Blocked Entity (synthetic screening hit)",
+          "currency": "USD",
+          "country": "XX",
+          "kind": "INDIVIDUAL",
+          "account_number_masked": "****0000",
+          "blocked": true
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "89842.80",
+          "fixed_fee": "0",
+          "percent_fee_amount": "808.59",
+          "total_fees": "808.59",
+          "amount_converted": "89034.21",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "1000.00",
+          "cost_vs_mid": "1342.80",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": false,
+          "checked_at": "2026-10-20T07:10:58.220637+00:00",
+          "findings": [
+            {
+              "code": "BENEFICIARY_BLOCKED",
+              "severity": "BLOCK",
+              "message": "Beneficiary is on the (synthetic) blocked list: Synthetic screening-list match (demo only)"
+            }
+          ]
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:58.220637+00:00",
+        "amount_usd_equiv": "1000.00",
+        "created_at": "2026-10-20T07:10:58.220637+00:00",
+        "updated_at": "2026-10-20T07:10:58.220637+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "breaches reserve",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "planner",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_univ_bursar",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "3900.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0004"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_52ce00d015a6",
+        "account_id": "acct_demo_student",
+        "status": "BLOCKED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "350386.89",
+          "fixed_fee": "0",
+          "percent_fee_amount": "3153.48",
+          "total_fees": "3153.48",
+          "amount_converted": "347233.41",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "3900.00",
+          "cost_vs_mid": "5236.89",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": false,
+          "checked_at": "2026-10-20T07:10:58.320442+00:00",
+          "findings": [
+            {
+              "code": "INSUFFICIENT_BALANCE",
+              "severity": "BLOCK",
+              "message": "Balance 351572.09 INR minus 350386.89 would fall below the reserve 150000.00."
+            }
+          ]
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:58.320442+00:00",
+        "amount_usd_equiv": "3900.00",
+        "created_at": "2026-10-20T07:10:58.320442+00:00",
+        "updated_at": "2026-10-20T07:10:58.320442+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    }
+  ]
+}

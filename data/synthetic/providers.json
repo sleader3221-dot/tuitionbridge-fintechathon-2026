@@ -1,0 +1,9 @@
+{
+  "label": "SIMULATED providers with illustrative fee structures. Not real companies or real pricing.",
+  "providers": [
+    {"id": "demo_bank_wire", "name": "Demo Bank Wire (SWIFT-style)", "fixed_fee": "1500.00", "fixed_fee_currency": "INR", "percent_fee": "0", "fx_margin": "0.025", "settlement_days": 3, "corridors": ["INR-USD", "INR-GBP", "INR-EUR", "INR-CAD", "INR-AUD"], "max_amount_usd": "50000", "pays_institution_directly": false, "label": "SIMULATED"},
+    {"id": "demo_fintech_a", "name": "Demo Fintech A (low-margin)", "fixed_fee": "0", "fixed_fee_currency": "INR", "percent_fee": "0.009", "fx_margin": "0.006", "settlement_days": 1, "corridors": ["INR-USD", "INR-GBP", "INR-EUR", "INR-CAD", "INR-AUD"], "max_amount_usd": "20000", "pays_institution_directly": false, "label": "SIMULATED"},
+    {"id": "demo_fintech_b", "name": "Demo Fintech B (hybrid fee)", "fixed_fee": "299.00", "fixed_fee_currency": "INR", "percent_fee": "0.005", "fx_margin": "0.010", "settlement_days": 2, "corridors": ["INR-USD", "INR-GBP", "INR-CAD"], "max_amount_usd": "25000", "pays_institution_directly": false, "label": "SIMULATED"},
+    {"id": "demo_edu_platform", "name": "Demo Education Payment Platform", "fixed_fee": "0", "fixed_fee_currency": "INR", "percent_fee": "0", "fx_margin": "0.018", "settlement_days": 2, "corridors": ["INR-USD", "INR-GBP", "INR-EUR", "INR-CAD", "INR-AUD"], "max_amount_usd": "100000", "pays_institution_directly": true, "label": "SIMULATED"}
+  ]
+}

@@ -1,0 +1,11 @@
+{
+  "label": "SYNTHETIC_FIXTURE - illustrative mid-market rates, NOT live market data",
+  "rates": [
+    {"base": "USD", "quote": "INR", "mid": "88.50", "as_of": "2026-10-01T00:00:00Z", "source": "SYNTHETIC_FIXTURE"},
+    {"base": "GBP", "quote": "INR", "mid": "118.20", "as_of": "2026-10-01T00:00:00Z", "source": "SYNTHETIC_FIXTURE"},
+    {"base": "EUR", "quote": "INR", "mid": "103.40", "as_of": "2026-10-01T00:00:00Z", "source": "SYNTHETIC_FIXTURE"},
+    {"base": "CAD", "quote": "INR", "mid": "64.10", "as_of": "2026-10-01T00:00:00Z", "source": "SYNTHETIC_FIXTURE"},
+    {"base": "AUD", "quote": "INR", "mid": "58.30", "as_of": "2026-10-01T00:00:00Z", "source": "SYNTHETIC_FIXTURE"},
+    {"base": "GBP", "quote": "USD", "mid": "1.3356", "as_of": "2026-10-01T00:00:00Z", "source": "SYNTHETIC_FIXTURE"}
+  ]
+}

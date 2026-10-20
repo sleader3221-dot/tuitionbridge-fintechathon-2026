@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TuitionBridge — cross-border student payment agent (SANDBOX)</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="banner" role="status">SANDBOX / SIMULATED — synthetic data, no real money moves. Rates are fixtures dated 2026-10-01.</div>
+<header class="topbar">
+  <div class="brand"><span class="logo">TB</span><div><h1>TuitionBridge</h1><p>Plan it, check it, prove it — cross-border tuition payments with enforced permission tiers.</p></div></div>
+  <div class="role">
+    <label for="role">Acting as</label>
+    <select id="role">
+      <option value="viewer">viewer — Tier 0 (read)</option>
+      <option value="analyst">analyst — Tier 1 (analyse)</option>
+      <option value="planner">planner — Tier 2 (prepare)</option>
+      <option value="student" selected>student — Tier 3 (sandbox execute)</option>
+    </select>
+    <span id="tierBadge" class="badge tier">Tier 3</span>
+  </div>
+</header>
+
+<main class="layout">
+  <aside class="col side">
+    <section class="card" id="accountCard" aria-labelledby="accTitle">
+      <h2 id="accTitle">Account</h2>
+      <div id="accountBody" class="muted">Loading…</div>
+    </section>
+    <section class="card" aria-labelledby="limTitle">
+      <h2 id="limTitle">Policy limits (server-enforced)</h2>
+      <div id="limitsBody" class="muted">Loading…</div>
+    </section>
+    <section class="card" aria-labelledby="benTitle">
+      <h2 id="benTitle">Beneficiaries</h2>
+      <div id="benefBody" class="muted">Loading…</div>
+    </section>
+  </aside>
+
+  <section class="col main">
+    <section class="card step" aria-labelledby="s1">
+      <h2 id="s1"><span class="num">1</span> Plan — compare providers (Tier 1)</h2>
+      <form id="planForm" class="grid4">
+        <label>Tuition due<input id="amount" value="10000.00" inputmode="decimal" required></label>
+        <label>Currency<select id="recvCcy"><option>USD</option><option>GBP</option><option>EUR</option><option>CAD</option><option>AUD</option></select></label>
+        <label>Due date<input id="dueDate" type="date" value="2026-11-15" required></label>
+        <label>Question (optional)<input id="question" placeholder="Which is cheapest?"></label>
+        <button type="submit" class="primary">Compare providers</button>
+      </form>
+      <div id="planOut"></div>
+    </section>
+
+    <section class="card step" aria-labelledby="s2">
+      <h2 id="s2"><span class="num">2</span> Prepare — lock quote, run risk checks (Tier 2)</h2>
+      <form id="prepForm" class="grid4">
+        <label>Provider<select id="provider"></select></label>
+        <label>Beneficiary<select id="beneficiary"></select></label>
+        <label>Memo<input id="memo" value="Fall semester tuition"></label>
+        <label>Idempotency key<input id="idem"></label>
+        <button type="submit" class="primary">Prepare transfer</button>
+      </form>
+      <div id="prepOut"></div>
+    </section>
+
+    <section class="card step" aria-labelledby="s3">
+      <h2 id="s3"><span class="num">3</span> Approve &amp; execute in sandbox (Tier 3)</h2>
+      <div class="actions">
+        <button id="btnApprove" disabled>Approve</button>
+        <button id="btnExecute" disabled class="primary">Execute (SIMULATED)</button>
+        <button id="btnReject" disabled class="danger">Reject</button>
+        <button id="btnProd" disabled class="ghost" title="Always refused: Tier 4 is disabled">Try production execute (Tier 4)</button>
+      </div>
+      <div id="execOut"></div>
+    </section>
+
+    <section class="card" aria-labelledby="s4">
+      <h2 id="s4">Transfers</h2>
+      <div id="transfersBody" class="muted">None yet.</div>
+    </section>
+
+    <section class="card" aria-labelledby="s5">
+      <div class="rowhead"><h2 id="s5">Audit log (hash-chained)</h2><button id="btnVerify">Verify chain</button></div>
+      <div id="auditVerify"></div>
+      <div id="auditBody" class="muted">Empty.</div>
+    </section>
+  </section>
+</main>
+<div id="toast" class="toast" role="alert" aria-live="assertive"></div>
+<script src="app.js"></script>
+</body>
+</html>

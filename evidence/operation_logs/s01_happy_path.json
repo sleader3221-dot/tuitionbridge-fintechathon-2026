@@ -1,0 +1,574 @@
+{
+  "scenario": "s01_happy_path",
+  "title": "Compare -> prepare -> approve -> execute (sandbox) -> replay refused",
+  "label": "SIMULATED / SANDBOX",
+  "generated_at": "2026-10-20T07:10:58.089859+00:00",
+  "steps": [
+    {
+      "label": "account before",
+      "method": "GET",
+      "path": "/api/accounts/acct_demo_student",
+      "role": "viewer",
+      "request_body": null,
+      "status_code": 200,
+      "response": {
+        "account": {
+          "id": "acct_demo_student",
+          "holder_name": "Demo Student (synthetic)",
+          "home_currency": "INR",
+          "reserve_min": "150000.00",
+          "institution": "Demo University (synthetic)"
+        },
+        "balances": [
+          {
+            "currency": "INR",
+            "amount": "1250000.00"
+          },
+          {
+            "currency": "USD",
+            "amount": "300.00"
+          }
+        ],
+        "beneficiaries": [
+          {
+            "id": "benef_blocked_entity",
+            "name": "Blocked Entity (synthetic screening hit)",
+            "currency": "USD",
+            "country": "XX",
+            "kind": "INDIVIDUAL",
+            "account_number_masked": "****0000",
+            "blocked": true
+          },
+          {
+            "id": "benef_landlord",
+            "name": "Demo Landlord (synthetic)",
+            "currency": "USD",
+            "country": "US",
+            "kind": "INDIVIDUAL",
+            "account_number_masked": "****7733",
+            "blocked": false
+          },
+          {
+            "id": "benef_timeout_demo",
+            "name": "Timeout Demo Beneficiary (synthetic)",
+            "currency": "USD",
+            "country": "US",
+            "kind": "INDIVIDUAL",
+            "account_number_masked": "****9999",
+            "blocked": false
+          },
+          {
+            "id": "benef_univ_bursar",
+            "name": "Demo University Bursar (synthetic)",
+            "currency": "USD",
+            "country": "US",
+            "kind": "INSTITUTION",
+            "account_number_masked": "****4821",
+            "blocked": false
+          }
+        ],
+        "limits": {
+          "per_transfer_cap_usd": "15000",
+          "daily_cap_usd": "20000",
+          "daily_executed_usd": "0",
+          "quote_ttl_seconds": 900
+        },
+        "principal": {
+          "role": "viewer",
+          "max_tier": 0,
+          "key_id": "viewer:428d2ac3"
+        },
+        "data_label": "SYNTHETIC"
+      }
+    },
+    {
+      "label": "compare providers",
+      "method": "POST",
+      "path": "/api/quotes/compare",
+      "role": "analyst",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "target_receive_amount": "10000.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "question": "Which option is cheapest?"
+      },
+      "status_code": 200,
+      "response": {
+        "plan": {
+          "target_receive_amount": "10000.00",
+          "receive_currency": "USD",
+          "send_currency": "INR",
+          "usd_equivalent": "10000.00",
+          "due_date": "2026-11-15",
+          "today": "2026-10-20",
+          "days_until_due": 26,
+          "quotes": [
+            {
+              "provider_id": "demo_fintech_a",
+              "provider_name": "Demo Fintech A (low-margin)",
+              "send_currency": "INR",
+              "receive_currency": "USD",
+              "send_amount": "898427.91",
+              "fixed_fee": "0",
+              "percent_fee_amount": "8085.85",
+              "total_fees": "8085.85",
+              "amount_converted": "890342.06",
+              "mid_rate": "0.01129944",
+              "customer_rate": "0.01123164",
+              "receive_amount": "10000.00",
+              "cost_vs_mid": "13427.91",
+              "cost_pct": "0.0149",
+              "settlement_days": 1,
+              "pays_institution_directly": false,
+              "rate_as_of": "2026-10-01T00:00:00Z",
+              "rate_source": "SYNTHETIC_FIXTURE",
+              "label": "SIMULATED",
+              "rank": 1,
+              "settles_before_due": true,
+              "extra_cost_vs_best": "0.00"
+            },
+            {
+              "provider_id": "demo_fintech_b",
+              "provider_name": "Demo Fintech B (hybrid fee)",
+              "send_currency": "INR",
+              "receive_currency": "USD",
+              "send_amount": "898732.06",
+              "fixed_fee": "299.00",
+              "percent_fee_amount": "4493.66",
+              "total_fees": "4792.66",
+              "amount_converted": "893939.40",
+              "mid_rate": "0.01129944",
+              "customer_rate": "0.01118644",
+              "receive_amount": "10000.00",
+              "cost_vs_mid": "13732.06",
+              "cost_pct": "0.0153",
+              "settlement_days": 2,
+              "pays_institution_directly": false,
+              "rate_as_of": "2026-10-01T00:00:00Z",
+              "rate_source": "SYNTHETIC_FIXTURE",
+              "label": "SIMULATED",
+              "rank": 2,
+              "settles_before_due": true,
+              "extra_cost_vs_best": "304.15"
+            },
+            {
+              "provider_id": "demo_edu_platform",
+              "provider_name": "Demo Education Payment Platform",
+              "send_currency": "INR",
+              "receive_currency": "USD",
+              "send_amount": "901222.00",
+              "fixed_fee": "0",
+              "percent_fee_amount": "0.00",
+              "total_fees": "0.00",
+              "amount_converted": "901222.00",
+              "mid_rate": "0.01129944",
+              "customer_rate": "0.01109605",
+              "receive_amount": "10000.00",
+              "cost_vs_mid": "16222.00",
+              "cost_pct": "0.0180",
+              "settlement_days": 2,
+              "pays_institution_directly": true,
+              "rate_as_of": "2026-10-01T00:00:00Z",
+              "rate_source": "SYNTHETIC_FIXTURE",
+              "label": "SIMULATED",
+              "rank": 3,
+              "settles_before_due": true,
+              "extra_cost_vs_best": "2794.09"
+            },
+            {
+              "provider_id": "demo_bank_wire",
+              "provider_name": "Demo Bank Wire (SWIFT-style)",
+              "send_currency": "INR",
+              "receive_currency": "USD",
+              "send_amount": "909192.31",
+              "fixed_fee": "1500.00",
+              "percent_fee_amount": "0.00",
+              "total_fees": "1500.00",
+              "amount_converted": "907692.31",
+              "mid_rate": "0.01129944",
+              "customer_rate": "0.01101695",
+              "receive_amount": "10000.00",
+              "cost_vs_mid": "24192.31",
+              "cost_pct": "0.0266",
+              "settlement_days": 3,
+              "pays_institution_directly": false,
+              "rate_as_of": "2026-10-01T00:00:00Z",
+              "rate_source": "SYNTHETIC_FIXTURE",
+              "label": "SIMULATED",
+              "rank": 4,
+              "settles_before_due": true,
+              "extra_cost_vs_best": "10764.40"
+            }
+          ],
+          "exclusions": [],
+          "recommended_provider_id": "demo_fintech_a",
+          "recommendation_rule": "Among providers that settle on or before the due date, recommend the lowest send amount; if none settle in time, recommend the fastest and warn.",
+          "affordability": {
+            "currency": "INR",
+            "balance": "1250000.00",
+            "send_amount": "898427.91",
+            "balance_after": "351572.09",
+            "reserve_min": "150000.00",
+            "affordable": true
+          },
+          "warnings": [],
+          "data_label": "SYNTHETIC_FIXTURE"
+        },
+        "explanation": {
+          "text": "Recommended provider: Demo Fintech A (low-margin) (SIMULATED). To deliver 10000.00 USD you would send 898427.91 INR: fees 8085.85 INR, and the total cost versus the mid-market rate is 13427.91 INR (1.49%). Settlement takes 1 day(s); 26 day(s) remain until the due date. The next-best option, Demo Fintech B (hybrid fee), would cost 304.15 INR more. Balance after payment would be 351572.09 INR against a minimum reserve of 150000.00 INR: affordable. Rates are SYNTHETIC fixtures for demonstration; this is information, not financial advice.",
+          "source": "DETERMINISTIC_FALLBACK",
+          "model": null,
+          "llm_configured": false,
+          "validation": "llm_not_configured"
+        },
+        "question_flagged": false,
+        "question_flags": []
+      }
+    },
+    {
+      "label": "prepare",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "planner",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_univ_bursar",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "10000.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0001"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_d071d41adc25",
+        "account_id": "acct_demo_student",
+        "status": "PENDING_APPROVAL",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "898427.91",
+          "fixed_fee": "0",
+          "percent_fee_amount": "8085.85",
+          "total_fees": "8085.85",
+          "amount_converted": "890342.06",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "10000.00",
+          "cost_vs_mid": "13427.91",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": true,
+          "checked_at": "2026-10-20T07:10:57.613033+00:00",
+          "findings": []
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:57.613033+00:00",
+        "amount_usd_equiv": "10000.00",
+        "created_at": "2026-10-20T07:10:57.613033+00:00",
+        "updated_at": "2026-10-20T07:10:57.613033+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "approve",
+      "method": "POST",
+      "path": "/api/transfers/trf_d071d41adc25/approve",
+      "role": "student",
+      "request_body": {
+        "note": "evidence run"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_d071d41adc25",
+        "account_id": "acct_demo_student",
+        "status": "APPROVED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "898427.91",
+          "fixed_fee": "0",
+          "percent_fee_amount": "8085.85",
+          "total_fees": "8085.85",
+          "amount_converted": "890342.06",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "10000.00",
+          "cost_vs_mid": "13427.91",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": true,
+          "checked_at": "2026-10-20T07:10:57.743386+00:00",
+          "findings": []
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:57.613033+00:00",
+        "amount_usd_equiv": "10000.00",
+        "created_at": "2026-10-20T07:10:57.613033+00:00",
+        "updated_at": "2026-10-20T07:10:57.743386+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": "student:b0082c07",
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "execute (SIMULATED)",
+      "method": "POST",
+      "path": "/api/transfers/trf_d071d41adc25/execute",
+      "role": "student",
+      "request_body": null,
+      "status_code": 200,
+      "response": {
+        "id": "trf_d071d41adc25",
+        "account_id": "acct_demo_student",
+        "status": "EXECUTED_SIMULATED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "898427.91",
+          "fixed_fee": "0",
+          "percent_fee_amount": "8085.85",
+          "total_fees": "8085.85",
+          "amount_converted": "890342.06",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "10000.00",
+          "cost_vs_mid": "13427.91",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": true,
+          "checked_at": "2026-10-20T07:10:57.907437+00:00",
+          "findings": []
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:57.613033+00:00",
+        "amount_usd_equiv": "10000.00",
+        "created_at": "2026-10-20T07:10:57.613033+00:00",
+        "updated_at": "2026-10-20T07:10:57.907437+00:00",
+        "executed_at": "2026-10-20T07:10:57.907437+00:00",
+        "provider_reference": "SBX-2226E6094078",
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": "student:b0082c07",
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "execute again (idempotent replay)",
+      "method": "POST",
+      "path": "/api/transfers/trf_d071d41adc25/execute",
+      "role": "student",
+      "request_body": null,
+      "status_code": 200,
+      "response": {
+        "id": "trf_d071d41adc25",
+        "account_id": "acct_demo_student",
+        "status": "EXECUTED_SIMULATED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "898427.91",
+          "fixed_fee": "0",
+          "percent_fee_amount": "8085.85",
+          "total_fees": "8085.85",
+          "amount_converted": "890342.06",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "10000.00",
+          "cost_vs_mid": "13427.91",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": true,
+          "checked_at": "2026-10-20T07:10:57.907437+00:00",
+          "findings": []
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:25:57.613033+00:00",
+        "amount_usd_equiv": "10000.00",
+        "created_at": "2026-10-20T07:10:57.613033+00:00",
+        "updated_at": "2026-10-20T07:10:57.907437+00:00",
+        "executed_at": "2026-10-20T07:10:57.907437+00:00",
+        "provider_reference": "SBX-2226E6094078",
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": "student:b0082c07",
+        "execution_label": "SIMULATED",
+        "replayed": true
+      }
+    },
+    {
+      "label": "account after",
+      "method": "GET",
+      "path": "/api/accounts/acct_demo_student",
+      "role": "viewer",
+      "request_body": null,
+      "status_code": 200,
+      "response": {
+        "account": {
+          "id": "acct_demo_student",
+          "holder_name": "Demo Student (synthetic)",
+          "home_currency": "INR",
+          "reserve_min": "150000.00",
+          "institution": "Demo University (synthetic)"
+        },
+        "balances": [
+          {
+            "currency": "INR",
+            "amount": "351572.09"
+          },
+          {
+            "currency": "USD",
+            "amount": "300.00"
+          }
+        ],
+        "beneficiaries": [
+          {
+            "id": "benef_blocked_entity",
+            "name": "Blocked Entity (synthetic screening hit)",
+            "currency": "USD",
+            "country": "XX",
+            "kind": "INDIVIDUAL",
+            "account_number_masked": "****0000",
+            "blocked": true
+          },
+          {
+            "id": "benef_landlord",
+            "name": "Demo Landlord (synthetic)",
+            "currency": "USD",
+            "country": "US",
+            "kind": "INDIVIDUAL",
+            "account_number_masked": "****7733",
+            "blocked": false
+          },
+          {
+            "id": "benef_timeout_demo",
+            "name": "Timeout Demo Beneficiary (synthetic)",
+            "currency": "USD",
+            "country": "US",
+            "kind": "INDIVIDUAL",
+            "account_number_masked": "****9999",
+            "blocked": false
+          },
+          {
+            "id": "benef_univ_bursar",
+            "name": "Demo University Bursar (synthetic)",
+            "currency": "USD",
+            "country": "US",
+            "kind": "INSTITUTION",
+            "account_number_masked": "****4821",
+            "blocked": false
+          }
+        ],
+        "limits": {
+          "per_transfer_cap_usd": "15000",
+          "daily_cap_usd": "20000",
+          "daily_executed_usd": "10000.00",
+          "quote_ttl_seconds": 900
+        },
+        "principal": {
+          "role": "viewer",
+          "max_tier": 0,
+          "key_id": "viewer:428d2ac3"
+        },
+        "data_label": "SYNTHETIC"
+      }
+    }
+  ]
+}

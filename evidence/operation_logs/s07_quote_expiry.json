@@ -1,0 +1,151 @@
+{
+  "scenario": "s07_quote_expiry",
+  "title": "Locked quote expires (TTL 1s) and approval is refused",
+  "label": "SIMULATED / SANDBOX",
+  "generated_at": "2026-10-20T07:11:01.559489+00:00",
+  "steps": [
+    {
+      "label": "prepare",
+      "method": "POST",
+      "path": "/api/transfers/prepare",
+      "role": "planner",
+      "request_body": {
+        "account_id": "acct_demo_student",
+        "beneficiary_id": "benef_univ_bursar",
+        "provider_id": "demo_fintech_a",
+        "target_receive_amount": "10000.00",
+        "receive_currency": "USD",
+        "due_date": "2026-11-15",
+        "memo": "Fall semester tuition",
+        "idempotency_key": "idem-evidence-0009"
+      },
+      "status_code": 200,
+      "response": {
+        "id": "trf_987a0e6bf153",
+        "account_id": "acct_demo_student",
+        "status": "PENDING_APPROVAL",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "898427.91",
+          "fixed_fee": "0",
+          "percent_fee_amount": "8085.85",
+          "total_fees": "8085.85",
+          "amount_converted": "890342.06",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "10000.00",
+          "cost_vs_mid": "13427.91",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": true,
+          "checked_at": "2026-10-20T07:10:59.785041+00:00",
+          "findings": []
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:11:00.785041+00:00",
+        "amount_usd_equiv": "10000.00",
+        "created_at": "2026-10-20T07:10:59.785041+00:00",
+        "updated_at": "2026-10-20T07:10:59.785041+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    },
+    {
+      "label": "approve after expiry -> EXPIRED",
+      "method": "POST",
+      "path": "/api/transfers/trf_987a0e6bf153/approve",
+      "role": "student",
+      "request_body": {},
+      "status_code": 200,
+      "response": {
+        "id": "trf_987a0e6bf153",
+        "account_id": "acct_demo_student",
+        "status": "EXPIRED",
+        "provider_id": "demo_fintech_a",
+        "beneficiary_id": "benef_univ_bursar",
+        "beneficiary": {
+          "id": "benef_univ_bursar",
+          "name": "Demo University Bursar (synthetic)",
+          "currency": "USD",
+          "country": "US",
+          "kind": "INSTITUTION",
+          "account_number_masked": "****4821",
+          "blocked": false
+        },
+        "quote": {
+          "provider_id": "demo_fintech_a",
+          "provider_name": "Demo Fintech A (low-margin)",
+          "send_currency": "INR",
+          "receive_currency": "USD",
+          "send_amount": "898427.91",
+          "fixed_fee": "0",
+          "percent_fee_amount": "8085.85",
+          "total_fees": "8085.85",
+          "amount_converted": "890342.06",
+          "mid_rate": "0.01129944",
+          "customer_rate": "0.01123164",
+          "receive_amount": "10000.00",
+          "cost_vs_mid": "13427.91",
+          "cost_pct": "0.0149",
+          "settlement_days": 1,
+          "pays_institution_directly": false,
+          "rate_as_of": "2026-10-01T00:00:00Z",
+          "rate_source": "SYNTHETIC_FIXTURE",
+          "label": "SIMULATED"
+        },
+        "risk": {
+          "passed": false,
+          "checked_at": "2026-10-20T07:11:01.414792+00:00",
+          "findings": [
+            {
+              "code": "QUOTE_EXPIRED",
+              "severity": "BLOCK",
+              "message": "Quote expired at 2026-10-20T07:11:00.785041+00:00."
+            }
+          ]
+        },
+        "memo": "Fall semester tuition",
+        "memo_flagged": false,
+        "due_date": "2026-11-15",
+        "quote_expires_at": "2026-10-20T07:11:00.785041+00:00",
+        "amount_usd_equiv": "10000.00",
+        "created_at": "2026-10-20T07:10:59.785041+00:00",
+        "updated_at": "2026-10-20T07:11:01.414792+00:00",
+        "executed_at": null,
+        "provider_reference": null,
+        "failure_reason": null,
+        "created_by": "planner:4581cc82",
+        "approved_by": null,
+        "execution_label": "SIMULATED",
+        "replayed": false
+      }
+    }
+  ]
+}
