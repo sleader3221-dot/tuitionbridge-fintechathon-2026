@@ -3,6 +3,8 @@
 **2026 Shenzhen International FinTech Competition (FinTechathon) — International Track**
 **Topic C: Cross-border & Student Finance Assistant**
 
+Source repository: https://github.com/sleader3221-dot/tuitionbridge-fintechathon-2026
+
 TuitionBridge is an AI financial agent that helps an international student pay tuition across borders
 safely: it compares remittance providers on true cost, checks affordability against a minimum reserve,
 locks a quote, runs deterministic risk checks, and — only with explicit approval — executes the payment

@@ -9,7 +9,7 @@ Please find below the submission of team **[TEAM NAME]** for the 2026 Shenzhen I
 
 Project: **TuitionBridge** — an AI agent that plans, risk-checks and sandbox-executes cross-border tuition payments with server-enforced permission tiers and a tamper-evident audit log.
 
-Deliverables (attached as `TuitionBridge_FinTechathon2026_Submission.zip`; source also at **[GITHUB URL]**):
+Deliverables (attached as `TuitionBridge_FinTechathon2026_Submission.zip`; source also at https://github.com/sleader3221-dot/tuitionbridge-fintechathon-2026):
 1. Technical documentation — `docs/05_TECHNICAL_DOCUMENTATION.md` (+ `docs/04_SYSTEM_ARCHITECTURE.md`)
 2. Presentation deck — `slides/PRESENTATION_DECK.pptx` (+ PDF)
 3. Demo video — [attached / link] or "not submitted (optional)"
