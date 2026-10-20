@@ -1,6 +1,6 @@
 # Technical documentation — TuitionBridge (Deliverable 1)
 
-Version 0.1.0 · 20 October 2026 · Topic C, International Track · Team: [TEAM NAME — REPLACE]
+Version 0.1.0 · 20 October 2026 · Topic C, International Track · Team: TuitionBridge FinTech Lab
 
 ## 1. Problem and users
 See `03_PROBLEM_RESEARCH.md`. Primary user: an international student funding tuition from a home-currency account. Secondary: a planner (family member or adviser) who may prepare but not approve, and a viewer/reviewer.

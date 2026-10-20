@@ -1,6 +1,6 @@
 # Speaker script — 10 slides, target 8:30, hard stop 10:00
 
-1 (0:00–0:30) Title. "We are [team]. Topic C. TuitionBridge is an AI agent that plans, checks and proves a cross-border tuition payment — and it is built so that the model can never move money or invent a number."
+1 (0:00–0:30) Title. "We are TuitionBridge FinTech Lab. Topic C. TuitionBridge is an AI agent that plans, checks and proves a cross-border tuition payment — and it is built so that the model can never move money or invent a number."
 2 (0:30–1:30) Problem. "Students pay a few very large transfers a year. Cost hides in the FX margin. The World Bank's global average is 6.36% of the amount sent, over twice the SDG target. Indian residents alone sent 29.6 billion dollars abroad under LRS last year. The pain is cost opacity plus no safe way to delegate."
 3 (1:30–2:15) Gap. "Comparison sites show headline rates; banking apps execute with no policy layer; chatbots explain but cannot be trusted with arithmetic. Nobody gives you an agent with limits, approval and evidence."
 4 (2:15–3:00) Solution. "Five steps: compare on the amount you actually send; check affordability against a reserve; lock a quote; run deterministic risk checks; execute only after approval, in a sandbox, with a hash-chained audit log."

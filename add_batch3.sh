@@ -19,7 +19,7 @@ w docs/01_EXECUTIVE_SUMMARY.md <<'__TB_EOF__'
 
 **Competition:** 2026 Shenzhen International FinTech Competition (FinTechathon), International Track, theme "AI as a Financial Participant".
 **Topic:** C — Cross-border & Student Finance Assistant.
-**Team:** [TEAM NAME — REPLACE]. **Submission date:** 20 October 2026.
+**Team:** TuitionBridge FinTech Lab. **Submission date:** 20 October 2026.
 
 ## The problem
 International students make a handful of very large cross-border payments each year (tuition, deposits, rent) from a home-currency account, under time pressure and with real money at stake. The cost of a transfer is split across visible fees and an invisible FX margin, so the cheapest-looking option is often not the cheapest; the World Bank's Remittance Prices Worldwide database puts the global average cost of sending money at 6.36% of the amount sent (September 2025 report), more than double the 3% target in SDG 10.c. For India, the largest single source of outbound students in our demo corridor, resident individuals sent USD 29.56 billion abroad under the RBI's Liberalised Remittance Scheme in FY2024-25, with education one of the largest purposes. (Sources and caveats: `12_RESEARCH_SOURCES.md`.)
@@ -297,7 +297,7 @@ __TB_EOF__
 w docs/05_TECHNICAL_DOCUMENTATION.md <<'__TB_EOF__'
 # Technical documentation — TuitionBridge (Deliverable 1)
 
-Version 0.1.0 · 20 October 2026 · Topic C, International Track · Team: [TEAM NAME — REPLACE]
+Version 0.1.0 · 20 October 2026 · Topic C, International Track · Team: TuitionBridge FinTech Lab
 
 ## 1. Problem and users
 See `03_PROBLEM_RESEARCH.md`. Primary user: an international student funding tuition from a home-currency account. Secondary: a planner (family member or adviser) who may prepare but not approve, and a viewer/reviewer.
@@ -564,11 +564,11 @@ w docs/13_SUBMISSION_EMAIL_DRAFT.md <<'__TB_EOF__'
 # Submission email draft
 
 To: wangyr@pbcsf.tsinghua.edu.cn
-Subject: [International Track Submission] Team [TEAM NAME] — Topic C — TuitionBridge
+Subject: [International Track Submission] Team TuitionBridge FinTech Lab — Topic C — TuitionBridge
 
 Dear Ms. Wang,
 
-Please find below the submission of team **[TEAM NAME]** for the 2026 Shenzhen International FinTech Competition, International Track, Topic C (Cross-border & Student Finance Assistant).
+Please find below the submission of team **TuitionBridge FinTech Lab** for the 2026 Shenzhen International FinTech Competition, International Track, Topic C (Cross-border & Student Finance Assistant).
 
 Project: **TuitionBridge** — an AI agent that plans, risk-checks and sandbox-executes cross-border tuition payments with server-enforced permission tiers and a tamper-evident audit log.
 
@@ -585,14 +585,14 @@ Team members: [NAME, INSTITUTION, NATIONALITY] × [2–5]. Registration form and
 All execution is simulated in a sandbox; no on-chain or real-money transactions are claimed.
 
 Kind regards,
-[NAME], on behalf of team [TEAM NAME]
+[NAME], on behalf of team TuitionBridge FinTech Lab
 [EMAIL] · [PHONE]
 __TB_EOF__
 
 w slides/SPEAKER_NOTES.md <<'__TB_EOF__'
 # Speaker script — 10 slides, target 8:30, hard stop 10:00
 
-1 (0:00–0:30) Title. "We are [team]. Topic C. TuitionBridge is an AI agent that plans, checks and proves a cross-border tuition payment — and it is built so that the model can never move money or invent a number."
+1 (0:00–0:30) Title. "We are TuitionBridge FinTech Lab. Topic C. TuitionBridge is an AI agent that plans, checks and proves a cross-border tuition payment — and it is built so that the model can never move money or invent a number."
 2 (0:30–1:30) Problem. "Students pay a few very large transfers a year. Cost hides in the FX margin. The World Bank's global average is 6.36% of the amount sent, over twice the SDG target. Indian residents alone sent 29.6 billion dollars abroad under LRS last year. The pain is cost opacity plus no safe way to delegate."
 3 (1:30–2:15) Gap. "Comparison sites show headline rates; banking apps execute with no policy layer; chatbots explain but cannot be trusted with arithmetic. Nobody gives you an agent with limits, approval and evidence."
 4 (2:15–3:00) Solution. "Five steps: compare on the amount you actually send; check affordability against a reserve; lock a quote; run deterministic risk checks; execute only after approval, in a sandbox, with a hash-chained audit log."
@@ -622,7 +622,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "slides" / "PRESENTATION_DECK.pptx"
 SHOTS = ROOT / "evidence" / "screenshots"
-TEAM = "[TEAM NAME]"
+TEAM = "TuitionBridge FinTech Lab"
 
 SLIDES = [
     ("TuitionBridge", ["Plan it, check it, prove it: an AI agent for cross-border tuition payments",

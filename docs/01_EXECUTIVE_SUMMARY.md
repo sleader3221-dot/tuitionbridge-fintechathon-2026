@@ -2,7 +2,7 @@
 
 **Competition:** 2026 Shenzhen International FinTech Competition (FinTechathon), International Track, theme "AI as a Financial Participant".
 **Topic:** C — Cross-border & Student Finance Assistant.
-**Team:** [TEAM NAME — REPLACE]. **Submission date:** 20 October 2026.
+**Team:** TuitionBridge FinTech Lab. **Submission date:** 20 October 2026.
 
 ## The problem
 International students make a handful of very large cross-border payments each year (tuition, deposits, rent) from a home-currency account, under time pressure and with real money at stake. The cost of a transfer is split across visible fees and an invisible FX margin, so the cheapest-looking option is often not the cheapest; the World Bank's Remittance Prices Worldwide database puts the global average cost of sending money at 6.36% of the amount sent (September 2025 report), more than double the 3% target in SDG 10.c. For India, the largest single source of outbound students in our demo corridor, resident individuals sent USD 29.56 billion abroad under the RBI's Liberalised Remittance Scheme in FY2024-25, with education one of the largest purposes. (Sources and caveats: `12_RESEARCH_SOURCES.md`.)

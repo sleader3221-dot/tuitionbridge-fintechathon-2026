@@ -15,7 +15,7 @@ except ImportError:
 ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "slides" / "PRESENTATION_DECK.pptx"
 SHOTS = ROOT / "evidence" / "screenshots"
-TEAM = "[TEAM NAME]"
+TEAM = "TuitionBridge FinTech Lab"
 
 SLIDES = [
     ("TuitionBridge", ["Plan it, check it, prove it: an AI agent for cross-border tuition payments",

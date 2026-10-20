@@ -1,11 +1,11 @@
 # Submission email draft
 
 To: wangyr@pbcsf.tsinghua.edu.cn
-Subject: [International Track Submission] Team [TEAM NAME] — Topic C — TuitionBridge
+Subject: [International Track Submission] Team TuitionBridge FinTech Lab — Topic C — TuitionBridge
 
 Dear Ms. Wang,
 
-Please find below the submission of team **[TEAM NAME]** for the 2026 Shenzhen International FinTech Competition, International Track, Topic C (Cross-border & Student Finance Assistant).
+Please find below the submission of team **TuitionBridge FinTech Lab** for the 2026 Shenzhen International FinTech Competition, International Track, Topic C (Cross-border & Student Finance Assistant).
 
 Project: **TuitionBridge** — an AI agent that plans, risk-checks and sandbox-executes cross-border tuition payments with server-enforced permission tiers and a tamper-evident audit log.
 
@@ -22,5 +22,5 @@ Team members: [NAME, INSTITUTION, NATIONALITY] × [2–5]. Registration form and
 All execution is simulated in a sandbox; no on-chain or real-money transactions are claimed.
 
 Kind regards,
-[NAME], on behalf of team [TEAM NAME]
+[NAME], on behalf of team TuitionBridge FinTech Lab
 [EMAIL] · [PHONE]
